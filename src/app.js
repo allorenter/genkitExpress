@@ -5,6 +5,7 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import datosRouter from './routes/datos';
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/datos', datosRouter);
 
 export default app;
