@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import Mysql from 'mysql';
 
 const config = {
     host: 'localhost',
@@ -7,4 +7,4 @@ const config = {
     database: 'genkit',
 };
 
-export default mysql.createPool(config);
+export default Mysql.createPool(config);

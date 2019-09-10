@@ -1,4 +1,7 @@
+//Archivo con las funciones que usaremos para generar los datos que no están guardados en bbdd
+
 const generar = {
+  
   telfMovil: function() {
     let telfMovil = "6";
     for (let i = 0; i < 8; i++) {
@@ -6,6 +9,7 @@ const generar = {
     }
     return telfMovil;
   },
+
   dni: function() {
     let dni = "";
     let letras = "TRWAGMYFPDXBNJZSQVHLCKEO";
@@ -16,9 +20,11 @@ const generar = {
     letraDni = letras.charAt(dni % 23);
     return "" + dni + letraDni;
   },
+
   nie: function() {
     return "";
   },
+
   cadena: function(longitudCadena){
     let caracteres="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let cadenaGenerada="";
@@ -27,6 +33,7 @@ const generar = {
     }
     return cadenaGenerada;
   },
+
   numAleatorio: function (numMin, numMax) {
     return Math.round(Math.random() * (numMax - numMin) + numMin);
   }
