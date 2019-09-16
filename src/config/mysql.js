@@ -1,10 +1,10 @@
-import Mysql from 'mysql';
+import Mysql from "mysql";
 
-const config = {
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'genkit',
-};
+const pool = Mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "genkit"
+});
 
-export default Mysql.createPool(config);
+export default pool;
