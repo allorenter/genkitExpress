@@ -4,7 +4,7 @@ import Propiedades from "../utils/Propiedades";
 class ObjetoGenerado {
   constructor(objetoBBDD, arrayPropiedades) {
     
-    //DATOD BBDD
+    //DATOS BBDD
     this.nombre = objetoBBDD.nombre;
     this.primerApellido = objetoBBDD.primerapellido;
     this.segundoApellido = objetoBBDD.segundoapellido;

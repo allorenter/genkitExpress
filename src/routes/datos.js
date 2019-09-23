@@ -6,12 +6,30 @@ import ObjetoGenerado from "../models/ObjetoGenerado";
 
 var router = express.Router();
 
+router.post("/getDatos", (req, res) => {
+  if (Propiedades.generarConsulta(req.body) != "") {
+    let cantidad;
+    req.query.cantidad ? (cantidad = req.query.cantidad) : (cantidad = 1);
+    Consultas.count().then(totalRegistros => {
+      let numAleatorio = Math.round(Math.random() * (totalRegistros - cantidad) + cantidad);
+      Consultas.datos(Propiedades.generarConsulta(req.body), numAleatorio, cantidad).then(result => {
+        result = result.map(objeto => {
+          return new ObjetoGenerado(objeto, req.body);
+        });
+        res.send(result);
+      });
+    });
+  }else{
+    res.send(new ObjetoGenerado({}, req.body));
+  }
+});
+
 router.post("/getAll", (req, res) => {
   if (Propiedades.generarConsulta(req.body) != "") {
     Consultas.todos(Propiedades.generarConsulta(req.body), function(result) {
-      result=result.map((objeto=>{
+      result = result.map(objeto => {
         return new ObjetoGenerado(objeto, req.body);
-      }));
+      });
       res.send(result);
     });
   } else {

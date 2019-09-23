@@ -2,8 +2,6 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import Mysql from './config/Mysql';
-
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import datosRouter from './routes/datos';
