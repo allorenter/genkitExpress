@@ -1,3 +1,5 @@
+//CLASE PARA INSTANCIAR LOS OBJETOS CON LOS DATOS QUE PEDIMOS Y QUE SERÁN DEVUELTOS
+
 import Generar from "../utils/Generar";
 import Propiedades from "../utils/Propiedades";
 

@@ -1,5 +1,7 @@
+//FICHERO CON LOS ENDPOINTS PARA DEVOLVER LOS DATOS GENERADOS
+
 import express from "express";
-import Consultas from "../utils/ConsultasBBDD";
+import {accionesDatos} from "../utils/AccionesBBDD";
 import Generar from "../utils/Generar";
 import Propiedades from "../utils/Propiedades";
 import ObjetoGenerado from "../models/ObjetoGenerado";
@@ -10,9 +12,9 @@ router.post("/getDatos", (req, res) => {
   if (Propiedades.generarConsulta(req.body) != "") {
     let cantidad;
     req.query.cantidad ? (cantidad = req.query.cantidad) : (cantidad = 1);
-    Consultas.count().then(totalRegistros => {
+    accionesDatos.count().then(totalRegistros => {
       let numAleatorio = Math.round(Math.random() * (totalRegistros - cantidad) + cantidad);
-      Consultas.datos(Propiedades.generarConsulta(req.body), numAleatorio, cantidad).then(result => {
+      accionesDatos.datos(Propiedades.generarConsulta(req.body), numAleatorio, cantidad).then(result => {
         result = result.map(objeto => {
           return new ObjetoGenerado(objeto, req.body);
         });
@@ -26,7 +28,7 @@ router.post("/getDatos", (req, res) => {
 
 router.post("/getAll", (req, res) => {
   if (Propiedades.generarConsulta(req.body) != "") {
-    Consultas.todos(Propiedades.generarConsulta(req.body), function(result) {
+    accionesDatos.todos(Propiedades.generarConsulta(req.body), function(result) {
       result = result.map(objeto => {
         return new ObjetoGenerado(objeto, req.body);
       });
