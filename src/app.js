@@ -2,11 +2,10 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import Mysql from './config/Mysql';
-
+//DEFINIMOS LOS ARCHIVOS DE RUTAS
 import indexRouter from './routes/index';
-import usersRouter from './routes/users';
-import datosRouter from './routes/datos';
+import datosRouter from './routes/routesDatos';
+import usersRouter from './routes/routesUsers';
 
 const app = express();
 

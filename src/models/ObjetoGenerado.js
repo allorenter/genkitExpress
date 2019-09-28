@@ -1,10 +1,12 @@
+//CLASE PARA INSTANCIAR LOS OBJETOS CON LOS DATOS QUE PEDIMOS Y QUE SERÁN DEVUELTOS
+
 import Generar from "../utils/Generar";
 import Propiedades from "../utils/Propiedades";
 
 class ObjetoGenerado {
   constructor(objetoBBDD, arrayPropiedades) {
     
-    //DATOD BBDD
+    //DATOS BBDD
     this.nombre = objetoBBDD.nombre;
     this.primerApellido = objetoBBDD.primerapellido;
     this.segundoApellido = objetoBBDD.segundoapellido;

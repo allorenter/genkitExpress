@@ -3,17 +3,12 @@ import Propiedades from "../utils/Propiedades";
 
 var router = express.Router();
 
-/* GET home page. */
-router.get("/", function(req, res, next) {
-  res.send("holaaa");
+router.get("/conexion", function(req, res, next) {
+  res.send({ conexion: "Conexión Correcta" });
 });
 
-router.post('/pruebaPost', (req, res) => {
-    return res.status(200).send(req.body);
-});
-
-router.get("/propiedades", function(req, res, next) { 
-  res.send(Propiedades.propiedades);
+router.get("/propiedades", function(req, res, next) {
+  res.send({ listaPropiedades: Propiedades.propiedades });
 });
 
 export default router;

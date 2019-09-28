@@ -1,30 +1,15 @@
+//ARCHIVO CON FUNCIONES REFERENTES A LAS PROPIEDADES DE LOS OBJETOS GENERADOS
+
 import Propiedad from "../utils/Propiedad";
 
 const propiedades = {
+
   propiedades: [
     new Propiedad("nombre", "Nombre", false, "nombre", null),
-    new Propiedad(
-      "primerApellido",
-      "Primer Apellido",
-      false,
-      "primerApellido",
-      null
-    ),
-    new Propiedad(
-      "segundoApellido",
-      "Segundo Apellido",
-      false,
-      "segundoApellido",
-      null
-    ),
+    new Propiedad("primerApellido", "Primer Apellido", false, "primerApellido", null),
+    new Propiedad("segundoApellido", "Segundo Apellido", false, "segundoApellido", null),
     new Propiedad("apellidos", "Apellidos", false, "apellidos", null),
-    new Propiedad(
-      "nombreCompleto",
-      "Nombre Completo",
-      false,
-      "nombreCompleto",
-      null
-    ),
+    new Propiedad("nombreCompleto", "Nombre Completo", false, "nombreCompleto", null),
     new Propiedad("dni", "Dni", false, "dni", null),
     new Propiedad("nie", "Nie", false, "nie", null),
     new Propiedad("email", "Email", false, "email", null),
@@ -35,37 +20,20 @@ const propiedades = {
     new Propiedad("provincia", "Provincia", false, "provincia", null),
     new Propiedad("comunidad", "Comunidad Autónoma", false, "comunidad", null),
     new Propiedad("calle", "Calle", false, "calle", null),
-    new Propiedad(
-      "cadenaAleatoria",
-      "Cadena aleatoria",
-      false,
-      "cadenaAleatoria",
-      {"longitud": 8}
-    ),
+    new Propiedad("cadenaAleatoria", "Cadena aleatoria", false, "cadenaAleatoria", {"longitud": 8}),
     new Propiedad("usuario", "Usuario", false, "usuario", null),
     new Propiedad("fecha", "Fecha Aleatoria", false, "fecha", null),
     new Propiedad("matricula", "Matrícula", false, "matricula", null),
-    new Propiedad(
-      "tarjetaCredito",
-      "Tarjeta Crédito",
-      false,
-      "tarjetaCredito",
-      null
-    ),
+    new Propiedad("tarjetaCredito", "Tarjeta Crédito", false, "tarjetaCredito", null),
     new Propiedad("telfFijo", "Teléfono Fijo", false, "telfFijo", null),
     new Propiedad("iban", "IBAN", false, "iban", null),
-    new Propiedad(
-      "numAleatorio",
-      "Número Aleatorio",
-      false,
-      "numAleatorio",
-      {"numMin": 1, "numMax": 10}
-    ),
+    new Propiedad("numAleatorio", "Número Aleatorio", false, "numAleatorio", {"numMin": 1, "numMax": 10}),
     new Propiedad("booleano", "Booleano", false, "booleano", null)
   ],
+
   generarConsulta: function(arrayPropiedades) {
     let consulta = "";
-    //guardamos los nombres de las propiedades que guardamos en bbdd
+    //definimos los nombres de las propiedades que guardamos en bbdd
     const propiedadesBbdd = [
       "calle",
       "codpostal",
@@ -96,6 +64,7 @@ const propiedades = {
     });
     return consulta;
   },
+
   estaSeleccionada: function(arrayPropiedades, nombrePropiedad) {
     let varReturn=false;
     arrayPropiedades.forEach(propiedad => {
@@ -107,6 +76,7 @@ const propiedades = {
     });
     return varReturn;
   },
+  
   getOpciones: function (arrayPropiedades, nombrePropiedad) {
     let varReturn=null;
     arrayPropiedades.forEach(propiedad => {
