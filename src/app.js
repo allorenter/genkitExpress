@@ -2,9 +2,10 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+//DEFINIMOS LOS ARCHIVOS DE RUTAS
 import indexRouter from './routes/index';
-import usersRouter from './routes/users';
-import datosRouter from './routes/datos';
+import datosRouter from './routes/routesDatos';
+import usersRouter from './routes/routesUsers';
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/usuarios', usersRouter);
+app.use('/users', usersRouter);
 app.use('/datos', datosRouter);
 
 export default app;

@@ -1,3 +1,5 @@
+//ARCHIVO CON FUNCIONES REFERENTES A LAS PROPIEDADES DE LOS OBJETOS GENERADOS
+
 import Propiedad from "../utils/Propiedad";
 
 const propiedades = {
@@ -31,7 +33,7 @@ const propiedades = {
 
   generarConsulta: function(arrayPropiedades) {
     let consulta = "";
-    //guardamos los nombres de las propiedades que guardamos en bbdd
+    //definimos los nombres de las propiedades que guardamos en bbdd
     const propiedadesBbdd = [
       "calle",
       "codpostal",
