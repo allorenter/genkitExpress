@@ -31,6 +31,19 @@ const controllerUsers = {
         return callback(Respuesta.error(404, "Ha ocurrido un error"));
       }
     })  
+  },
+
+  usuarioExiste: function(nombre, callback){
+    let usuario= new Usuario(nombre, null, null);
+    tablaUsuarios.usuarioExiste(usuario).then((usuarioExiste)=>{
+      if(usuarioExiste.length>0){
+        return callback(Respuesta.success({existe: true, mensaje : "El usuario existe"}));
+      }else{
+        return callback(Respuesta.success({existe: false, mensaje : "El usuario NO existe"}));
+      }
+    }).catch((e)=>{
+      return callback(Respuesta.error(404, "Ha ocurrido un error"));
+    })  
   }
 };
 

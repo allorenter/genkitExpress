@@ -55,6 +55,15 @@ const tablaUsuarios={
         resolve(result);
       });
     });
+  },
+
+  usuarioExiste: function(usuario){
+    return new Promise((resolve, reject) => {
+      pool.query(`SELECT nombre FROM usuarios WHERE nombre='${usuario.nombre}';`, (error, result) => {
+        if (error) reject(error);
+        resolve(result);
+      });
+    });
   }
 
 };
