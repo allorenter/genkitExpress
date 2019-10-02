@@ -1,40 +1,38 @@
 //CLASE PARA INSTANCIAR LOS OBJETOS CON LOS DATOS QUE PEDIMOS Y QUE SERÁN DEVUELTOS
-
 import Generar from "../utils/Generar";
-import Propiedades from "../utils/Propiedades";
 
 class ObjetoGenerado {
-  constructor(objetoBBDD, arrayPropiedades) {
+  constructor(objetoBBDD, listaPropiedades) {
     
     //DATOS BBDD
-    this.nombre = objetoBBDD.nombre;
-    this.primerApellido = objetoBBDD.primerapellido;
-    this.segundoApellido = objetoBBDD.segundoapellido;
-    this.apellidos = objetoBBDD.apellidos;
-    this.sexo = objetoBBDD.sexo;
-    this.codPostal = objetoBBDD.codpostal;
-    this.poblacion = objetoBBDD.poblacion;
-    this.provincia = objetoBBDD.provincia;
-    this.comunidad = objetoBBDD.comunidad;
-    this.calle = objetoBBDD.calle;
+    this[listaPropiedades.nombre.nombrePropiedad] = objetoBBDD.nombre;
+    this[listaPropiedades.primerApellido.nombrePropiedad] = objetoBBDD.primerapellido;
+    this[listaPropiedades.segundoApellido.nombrePropiedad] = objetoBBDD.segundoapellido;
+    this[listaPropiedades.apellidos.nombrePropiedad] = objetoBBDD.apellidos;
+    this[listaPropiedades.sexo.nombrePropiedad] = objetoBBDD.sexo;
+    this[listaPropiedades.codPostal.nombrePropiedad] = objetoBBDD.codpostal;
+    this[listaPropiedades.calle.nombrePropiedad] = objetoBBDD.calle;
+    this[listaPropiedades.poblacion.nombrePropiedad] = objetoBBDD.poblacion;
+    this[listaPropiedades.provincia.nombrePropiedad] = objetoBBDD.provincia;
+    this[listaPropiedades.comunidad.nombrePropiedad] = objetoBBDD.comunidad;
+    
 
     //GENERADOS POR FUNCIONES
-    this.dni = Propiedades.estaSeleccionada(arrayPropiedades, "dni")
-      ? Generar.dni()
+    this[listaPropiedades.dni.nombrePropiedad] = (listaPropiedades.dni.seleccionada) ? Generar.dni() : undefined;
+
+    this[listaPropiedades.telfMovil.nombrePropiedad] = (listaPropiedades.telfMovil.seleccionada)  
+      ? Generar.telfMovil() 
       : undefined;
 
-    this.telfMovil = Propiedades.estaSeleccionada(arrayPropiedades, "telfMovil")
-      ? Generar.telfMovil()
+    this[listaPropiedades.cadenaAleatoria.nombrePropiedad] = (listaPropiedades.cadenaAleatoria.seleccionada)
+      ? Generar.cadena(listaPropiedades.cadenaAleatoria.opciones.longitud)
       : undefined;
 
-    this.cadenaAleatoria = Propiedades.estaSeleccionada(arrayPropiedades,"cadenaAleatoria")
-      ? Generar.cadena(Propiedades.getOpciones(arrayPropiedades, "cadenaAleatoria").longitud)
-      : undefined;
-
-    let opcionesNumAleatorio = Propiedades.getOpciones(arrayPropiedades, "numAleatorio");
-    this.numAleatorio = Propiedades.estaSeleccionada(arrayPropiedades,"numAleatorio")
+    let opcionesNumAleatorio = listaPropiedades.numAleatorio.opciones;
+    this[listaPropiedades.numAleatorio.nombrePropiedad] = (listaPropiedades.numAleatorio.seleccionada)
       ? Generar.numAleatorio(opcionesNumAleatorio.numMin, opcionesNumAleatorio.numMax)
       : undefined;
+      
     //this.nombreCompleto = seleccionada;
     //this.nie = nomb;
     //this.email = nombreMostrado;

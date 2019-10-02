@@ -3,6 +3,7 @@
 import { tablaUsuarios } from "../utils/BBDD";
 import Usuario from "../models/Usuario";
 import Respuesta from "../utils/Respuestas";
+import jwt from "../utils/JWT";
 
 const controllerUsers = {
   
@@ -10,7 +11,7 @@ const controllerUsers = {
     let usuario= new Usuario(nombre, null, contrasena);
     tablaUsuarios.login(usuario).then(result => {
       if(result.length>0){
-        return callback(Respuesta.success({mensaje : "Login correcto", usuario: usuario.nombre}));
+        return callback(Respuesta.success({mensaje : "Login correcto", usuario: usuario.nombre, token: jwt.generarToken(usuario)}));
       }else{
         return callback(Respuesta.error(401, "Usuario o contraseña incorrectos"));
       }

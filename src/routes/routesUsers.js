@@ -3,7 +3,6 @@ import express from "express";
 import controllerUsers from "../controllers/controllerUsers";
 import Respuesta from "../utils/Respuestas";
 
-
 var router = express.Router();
 
 router.post('/login', function(req, res, next) {
