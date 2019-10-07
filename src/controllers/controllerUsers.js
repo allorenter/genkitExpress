@@ -4,6 +4,7 @@ import { tablaUsuarios } from "../utils/BBDD";
 import Usuario from "../models/Usuario";
 import Respuesta from "../utils/Respuestas";
 import jwt from "../utils/JWT";
+import respuesta from "../utils/Respuestas";
 
 const controllerUsers = {
   
@@ -44,7 +45,16 @@ const controllerUsers = {
     }).catch((e)=>{
       return callback(Respuesta.error(404, "Ha ocurrido un error"));
     })  
+  },
+
+  comprobarToken: function(token, callback){
+    if (jwt.verificarToken(token)){
+      return callback(Respuesta.success('Token válido'));
+    }else{
+      return callback(Respuesta.error(401, "Token inválido"));
+    }
   }
+
 };
 
 export default controllerUsers;
