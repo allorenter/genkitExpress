@@ -8,6 +8,9 @@ import Respuesta from "../utils/Respuestas";
 import jwt from "../utils/JWT";
 
 const controllerDatos = {
+  getPruebaOrden: function() {
+    return Propiedades.ordenarObjeto();  
+  },
 
   getPropiedades: function(token) {
     if (jwt.verificarToken(token)) {
@@ -28,28 +31,38 @@ const controllerDatos = {
           isNaN(cantidadObjetos) ? (cantidadObjetos = 1) : null;
           //Consultamos el total de registros a BBDD
           tablaDatos.count().then(totalRegistros => {
-            let numAleatorio = Math.round(Math.random() * (totalRegistros - cantidadObjetos) + cantidadObjetos);
+            let numAleatorio = Math.round(
+              Math.random() * (totalRegistros - cantidadObjetos) +
+                cantidadObjetos
+            );
             //Consultamos la cantidad de objetos que pedimos
-            tablaDatos.datos(consultaBBDD, numAleatorio, cantidadObjetos)
+            tablaDatos
+              .datos(consultaBBDD, numAleatorio, cantidadObjetos)
               .then(resultDatos => {
                 //Instanciamos un nuevo objeto con las propiedades pedidas, incluidas las generadas por funciones
                 resultDatos = resultDatos.map(objeto => {
-                  return new ObjetoGenerado(objeto, listaPropiedades);
+                  let obj=  new ObjetoGenerado(objeto, listaPropiedades);
+                  return Propiedades.ordenarObjeto(listaPropiedades, obj);
                 });
                 //Devolvemos la lista de objetos generados
                 return callback(Respuesta.success(resultDatos));
               });
           });
-        //Cuando no queremos que el objeto generado tenga propiedades que estén guardadas en BBDD, debemos crear el array devuelto mediante un bucle
+          //Cuando no queremos que el objeto generado tenga propiedades que estén guardadas en BBDD, debemos crear el array devuelto mediante un bucle
         } else {
           let listaObjetos = [];
-          for(let i=0; i<cantidadObjetos; i++){
+          for (let i = 0; i < cantidadObjetos; i++) {
             listaObjetos.push(new ObjetoGenerado({}, listaPropiedades));
           }
           return callback(Respuesta.success(listaObjetos));
         }
       } else {
-        return callback(Respuesta.error(400, "Debe incluir la lista de propiedades en el body de la petición"));
+        return callback(
+          Respuesta.error(
+            400,
+            "Debe incluir la lista de propiedades en el body de la petición"
+          )
+        );
       }
     } else {
       return callback(Respuesta.error(401, "Token inválido"));
