@@ -1,10 +1,9 @@
 //GENERAMOS LAS RESPUESTAS PARA USUARIOS
 
 import { tablaUsuarios } from "../utils/BBDD";
-import Usuario from "../models/Usuario";
+import Usuario from "../utils/Usuario";
 import Respuesta from "../utils/Respuestas";
 import jwt from "../utils/JWT";
-import respuesta from "../utils/Respuestas";
 
 const controllerUsers = {
   

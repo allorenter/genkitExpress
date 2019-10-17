@@ -11,10 +11,12 @@ const pool = Mysql.createPool({
 });
 
 const tablaDatos = {
-  todos: function(datosConsulta, callback) {
-    pool.query("SELECT " + datosConsulta + " FROM datos", (error, result) => {
-      if (error) throw error;
-      return callback(result);
+  todos: function() {
+    return new Promise((resolve, reject) => {
+      pool.query("SELECT * FROM datos", (error, result) => {
+        if (error) throw error;
+        resolve(result);
+      });
     });
   },
 

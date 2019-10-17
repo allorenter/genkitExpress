@@ -6,148 +6,98 @@ const propiedades = {
   propiedades: {
     nombre: new Propiedad(
       "nombre",
+      "nombre",
       "Nombre",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "datosPersonales"
     ),
     primerApellido: new Propiedad(
       "primerApellido",
+      "primerApellido",
       "Primer Apellido",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "datosPersonales"
     ),
     segundoApellido: new Propiedad(
       "segundoApellido",
+      "segundoApellido",
       "Segundo Apellido",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "datosPersonales"
     ),
     apellidos: new Propiedad(
       "apellidos",
+      "apellidos",
       "Apellidos",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "datosPersonales"
     ),
-    sexo: new Propiedad("sexo", "h", false, null, 0, "DatosPersonales"),
+    sexo: new Propiedad("sexo", "sexo", "Sexo", null, "datosPersonales"),
     codPostal: new Propiedad(
       "codPostal",
+      "codPostal",
       "Código Postal",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "lugares"
     ),
-    calle: new Propiedad("calle", "Calle", false, null, 0, "DatosPersonales"),
+    calle: new Propiedad("calle", "calle", "Calle", null, "lugares"),
     poblacion: new Propiedad(
       "poblacion",
+      "poblacion",
       "Población",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "lugares"
     ),
     provincia: new Propiedad(
       "provincia",
+      "provincia",
       "Provincia",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "lugares"
     ),
     comunidad: new Propiedad(
       "comunidad",
-      "Comunidad Autónoma",
-      false,
+      "comunidad",
+      "Comunidad",
       null,
-      0,
-      "DatosPersonales"
+      "lugares"
     ),
-    dni: new Propiedad("dni", "Dni", false, null, 0, "DatosPersonales"),
+    dni: new Propiedad("dni", "dni", "Dni", null, "datosPersonales"),
     telfMovil: new Propiedad(
       "telfMovil",
+      "telfMovil",
       "Teléfono Móvil",
-      false,
       null,
-      0,
-      "DatosPersonales"
+      "datosPersonales"
     ),
     cadenaAleatoria: new Propiedad(
       "cadenaAleatoria",
-      "Cadena aleatoria",
-      false,
+      "cadenaAleatoria",
+      "Cadena Aleatoria",
       { longitud: 8 },
-      0,
-      "DatosPersonales"
+      "otros"
     ),
     numAleatorio: new Propiedad(
       "numAleatorio",
+      "numAleatorio",
       "Número Aleatorio",
-      false,
       { numMin: 1, numMax: 10 },
-      0,
-      "DatosPersonales"
+      "otros"
     )
   },
 
-  generarConsulta: function(listaPropiedades) {
-    let consulta = "";
-    //definimos los nombres de las propiedades que guardamos en bbdd
-    const propiedadesBbdd = [
-      "calle",
-      "codpostal",
-      "poblacion",
-      "provincia",
-      "comunidad",
-      "nombre",
-      "primerapellido",
-      "segundoapellido",
-      "apellidos",
-      "sexo"
-    ];
-    //variable para comprobar si la propiedad que recorremos en el bucle es la primera y así crear correctamente la consulta al concatenar las ,
-    let i = 0;
-
-    for (const keyPropiedad in listaPropiedades) {
-      if (listaPropiedades.hasOwnProperty(keyPropiedad)) {
-        const propiedad = listaPropiedades[keyPropiedad];
-        if (
-          propiedadesBbdd.indexOf(keyPropiedad.toLowerCase()) != -1 &&
-          propiedad.seleccionada === true
-        ) {
-          if (i == 0) {
-            consulta = keyPropiedad.toLowerCase();
-            i++;
-          } else {
-            consulta += ", " + keyPropiedad.toLowerCase();
-          }
-        }
-      }
-    }
-    return consulta;
-  },
-  ordenarObjeto: function(listaPropiedades, objetoGenerado) {
-    let objKeys = Object.keys(listaPropiedades).sort(function(a, b) {
-      if (listaPropiedades[a].orden > listaPropiedades[b].orden) {
-        return 1;
-      }
-      if (listaPropiedades[a].orden < listaPropiedades[b].orden) {
-        return -1;
-      }
-      // a must be equal to b
-      return 0;
-    });
-    let newObject = {};
-    objKeys.forEach(key => (newObject[key] = objetoGenerado[key]));
-    return newObject;
-  }
+  propiedadesBbdd: [
+    "calle",
+    "codpostal",
+    "poblacion",
+    "provincia",
+    "comunidad",
+    "nombre",
+    "primerapellido",
+    "segundoapellido",
+    "apellidos",
+    "sexo"
+  ],
 };
 
 export default propiedades;
