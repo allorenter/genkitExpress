@@ -1,10 +1,11 @@
 class Propiedad {
-  constructor(nombrePropiedad, nombreMostrado, seleccionada, nuevoNombre, opciones) {
+  
+  constructor(nombrePropiedad, nombreSeleccionado, nombreMostrado, opciones, grupo) {
     this.nombrePropiedad = nombrePropiedad;
-    this.nombreMostrado = nombreMostrado;
-    this.seleccionada = seleccionada;
-    this.nuevoNombre = nuevoNombre;
+    this.nombreSeleccionado= nombreSeleccionado;
+    this.nombreMostrado= nombreMostrado;
     this.opciones = opciones;
+    this.grupo=grupo;
   }
 }
 

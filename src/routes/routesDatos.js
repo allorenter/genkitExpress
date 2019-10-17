@@ -5,8 +5,18 @@ import Respuesta from "../utils/Respuestas";
 
 var router = express.Router();
 
-router.post("/getDatos", (req, res) => {
-  controllerDatos.getDatos(req.body, req.query.cantidad, function(result){
+router.post("/getPruebaDatos", (req, res) => {  
+  controllerDatos.getPruebaDatos(req.body, req.query.cantidad, req.headers['authorization'], function(result){
+    Respuesta.enviarRespuesta(result, res);
+  })
+});
+
+router.get("/getPropiedades", function(req, res, next) {
+  Respuesta.enviarRespuesta(controllerDatos.getPropiedades(req.headers['authorization']), res);
+});
+
+router.post("/getDatos", (req, res) => {  
+  controllerDatos.getDatos(req.body, req.query.cantidad, req.headers['authorization'], function(result){
     Respuesta.enviarRespuesta(result, res);
   })
 });

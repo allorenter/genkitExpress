@@ -25,7 +25,7 @@ const generar = {
     return "";
   },
 
-  cadena: function(longitudCadena){
+  cadenaAleatoria: function(longitudCadena){
     let caracteres="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let cadenaGenerada="";
     for(let i=0;i<longitudCadena; i++){

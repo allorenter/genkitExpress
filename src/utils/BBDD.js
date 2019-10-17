@@ -11,10 +11,12 @@ const pool = Mysql.createPool({
 });
 
 const tablaDatos = {
-  todos: function(datosConsulta, callback) {
-    pool.query("SELECT " + datosConsulta + " FROM datos", (error, result) => {
-      if (error) throw error;
-      return callback(result);
+  todos: function() {
+    return new Promise((resolve, reject) => {
+      pool.query("SELECT * FROM datos", (error, result) => {
+        if (error) throw error;
+        resolve(result);
+      });
     });
   },
 
@@ -51,6 +53,15 @@ const tablaUsuarios={
   login: function(usuario){
     return new Promise((resolve, reject) => {
       pool.query(`SELECT * FROM usuarios WHERE nombre='${usuario.nombre}' AND contrasena='${usuario.contrasena}'`, (error, result) => {
+        if (error) reject(error);
+        resolve(result);
+      });
+    });
+  },
+
+  usuarioExiste: function(usuario){
+    return new Promise((resolve, reject) => {
+      pool.query(`SELECT nombre FROM usuarios WHERE nombre='${usuario.nombre}';`, (error, result) => {
         if (error) reject(error);
         resolve(result);
       });
