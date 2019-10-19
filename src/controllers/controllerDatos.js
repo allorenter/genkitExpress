@@ -18,12 +18,13 @@ const controllerDatos = {
           let objetoGenerado = {};
           listaPropiedades.forEach(propiedad => {
             let numAleatorio = Math.round(Math.random() * (registros.length - cantidadObjetos) + cantidadObjetos);        
-            if (Propiedades.propiedadesBbdd.indexOf(propiedad.nombrePropiedad.toLowerCase()) != -1){
-              objetoGenerado[propiedad.nombreSeleccionado]=registros[numAleatorio][propiedad.nombrePropiedad.toLowerCase()];
+            if (Propiedades.propiedadesBbdd.indexOf(propiedad.nombreTipo.toLowerCase()) != -1){
+              objetoGenerado[propiedad.nombrePropiedad]=registros[numAleatorio][propiedad.nombreTipo.toLowerCase()];
             }else{
-              objetoGenerado[propiedad.nombreSeleccionado]=Generar[propiedad.nombrePropiedad]();
+              objetoGenerado[propiedad.nombrePropiedad]=Generar.generar(propiedad);
             }
           });
+          
           arrayObjetosGenerados.push(objetoGenerado);
         }
         return callback(Respuesta.success(arrayObjetosGenerados));
@@ -50,14 +51,11 @@ const controllerDatos = {
   },
 
   getCadena: function(longitudCadena) {
-    isNaN(longitudCadena) ? (longitudCadena = 8) : null;
-    return Respuesta.success({ cadena: Generar.cadena(longitudCadena) });
+    return Respuesta.success({ cadena: Generar.cadenaAleatoria({ longitud: longitudCadena}) });
   },
 
   getNumAleatorio: function(numMin, numMax) {
-    isNaN(numMin) ? (numMin = 1) : null;
-    isNaN(numMax) ? (numMax = 10) : null;
-    return Respuesta.success({ numero: Generar.numAleatorio(numMin, numMax) });
+    return Respuesta.success({ numero: Generar.numAleatorio( {numMin: numMin, numMax: numMax}) });
   }
 };
 
