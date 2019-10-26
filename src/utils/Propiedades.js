@@ -11,17 +11,10 @@ const propiedades = {
       null,
       "datosPersonales"
     ),
-    primerApellido: new Propiedad(
-      "primerApellido",
-      "primerApellido",
-      "Primer Apellido",
-      null,
-      "datosPersonales"
-    ),
-    segundoApellido: new Propiedad(
-      "segundoApellido",
-      "segundoApellido",
-      "Segundo Apellido",
+    apellido: new Propiedad(
+      "apellido",
+      "apellido",
+      "Apellido",
       null,
       "datosPersonales"
     ),
@@ -83,9 +76,36 @@ const propiedades = {
       "Número Aleatorio",
       { numMin: 1, numMax: 10 },
       "otros"
+    ),
+    tarjetaCredito: new Propiedad(
+      "tarjetaCredito",
+      "tarjetaCredito",
+      "Tarjeta de Crédito",
+      {tipo: "cualquiera"},
+      "otros"
+    ),
+    matricula: new Propiedad(
+      "matricula",
+      "matricula",
+      "Matrícula",
+      null,
+      "otros"
+    ),
+    boolean: new Propiedad(
+      "boolean",
+      "boolean",
+      "Boleano",
+      null,
+      "otros"
+    ),
+    fecha: new Propiedad(
+      "fecha",
+      "fecha",
+      "Fecha",
+      {fechaInicio: "2000-1-1", fechaFin: "2019-1-1"},
+      "otros"
     )
   },
-
   propiedadesBbdd: [
     "calle",
     "codpostal",
@@ -93,7 +113,7 @@ const propiedades = {
     "provincia",
     "comunidad",
     "nombre",
-    "primerapellido",
+    "apellido",
     "segundoapellido",
     "apellidos",
     "sexo"

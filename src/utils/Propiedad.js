@@ -1,8 +1,8 @@
 class Propiedad {
   
-  constructor(nombrePropiedad, nombreSeleccionado, nombreMostrado, opciones, grupo) {
+  constructor(nombreTipo, nombrePropiedad, nombreMostrado, opciones, grupo) {
+    this.nombreTipo = nombreTipo;
     this.nombrePropiedad = nombrePropiedad;
-    this.nombreSeleccionado= nombreSeleccionado;
     this.nombreMostrado= nombreMostrado;
     this.opciones = opciones;
     this.grupo=grupo;
