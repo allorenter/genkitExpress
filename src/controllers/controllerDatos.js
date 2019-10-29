@@ -20,9 +20,11 @@ const controllerDatos = {
           let numAleatorio = Math.round(Math.random() * (registros.length - cantidadObjetos) + cantidadObjetos);
           //Recorremos las propiedades seleccionadas para añadirlas al nuevo objeto
           listaPropiedades.forEach(propiedad => {
-            //Sobreescribimos numaleatorio en caso de que la propiedad no sea sexo o nombre para que el sexo
-            // y el nombre sigan relacionadas.
-            numAleatorio=(propiedad.nombreTipo!=='sexo' && propiedad.nombreTipo!=='nombre')
+            /*Sobreescribimos numaleatorio en caso de que la propiedad no sea sexo o nombre para que el sexo
+             y el nombre sigan relacionadas. En caso de que no esté elegido el sexo, no será necesario que estén
+             relacionados y también sobreescrimos numaleatorio para poder tener nombres distintos.
+            */
+           numAleatorio=(propiedad.nombreTipo!=='sexo' && (propiedad.nombreTipo!=='nombre'||!listaPropiedades.find(item=>item.nombreTipo==="sexo")))
               ?Math.round(Math.random() * (registros.length - cantidadObjetos) + cantidadObjetos)
               :numAleatorio;
             if (Propiedades.propiedadesBbdd.indexOf(propiedad.nombreTipo.toLowerCase()) != -1){
