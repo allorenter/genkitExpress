@@ -89,7 +89,7 @@ const propiedades = {
       "matricula",
       "Matrícula",
       null,
-      "otros"
+      "vehiculos"
     ),
     boolean: new Propiedad(
       "boolean",
@@ -104,6 +104,13 @@ const propiedades = {
       "Fecha",
       {fechaInicio: "2000-1-1", fechaFin: "2019-1-1"},
       "otros"
+    ),
+    marcaCoche: new Propiedad(
+      "marcaCoche",
+      "marcaCoche",
+      "Marca de coche",
+      null,
+      "vehiculos"
     )
   },
   propiedadesBbdd: [
