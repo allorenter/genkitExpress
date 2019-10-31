@@ -29,4 +29,10 @@ router.get('/comprobarToken', function(req, res, next) {
   });
 });
 
+router.get('/getConfigHome', function(req, res, next) {
+  controllerUsers.getConfigHome(req.headers['authorization'], function(result) {
+    Respuesta.enviarRespuesta(result, res);
+  });
+});
+
 export default router;

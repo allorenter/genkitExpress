@@ -66,6 +66,15 @@ const tablaUsuarios={
         resolve(result);
       });
     });
+  },
+
+  getConfigHome: function(nombreUsuario){
+    return new Promise((resolve, reject) => {
+      pool.query(`SELECT config FROM confighome WHERE usuario='${nombreUsuario}';`, (error, result) => {
+        if (error) reject(error);
+        resolve(result);
+      });
+    });
   }
 
 };
