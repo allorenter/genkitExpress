@@ -3,8 +3,8 @@ import jsonwebtoken from "jsonwebtoken";
 const passJWT = "mipassJWT";
 
 const jwt = {
-  generarToken: function(user) {
-    return jsonwebtoken.sign({ nombre: user.nombre }, passJWT);
+  generarToken: function(nombre) {
+    return jsonwebtoken.sign({ nombre: nombre }, passJWT);
   },
 
   verificarToken: function(token) {

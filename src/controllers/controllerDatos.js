@@ -1,18 +1,18 @@
 //GENERAMOS LAS RESPUESTAS PARA LOS DATOS GENERADOS
-
-import { tablaDatos } from "../utils/BBDD";
 import Generar from "../utils/Generar";
-import Propiedades from "../utils/Propiedades";
 import Respuesta from "../utils/Respuestas";
 import jwt from "../utils/JWT";
+import Database from "../utils/Database";
 
 const controllerDatos = {
   getDatos: function(listaPropiedades, cantidadObjetos, token, callback) {
     if (jwt.verificarToken(token)) {
+      //Tipos de datos que se guardan en bbdd
+      let propiedadesBbdd=["calle","codpostal","poblacion","provincia","comunidad","nombre","apellido","segundoapellido","apellidos","sexo"]
       //Comprobamos si cantidadObjetos es un número
       isNaN(cantidadObjetos) ? (cantidadObjetos = 1) : null;
       //Obtenemos los registros de bbdd
-      tablaDatos.todos().then(registros => {
+      Database.query("SELECT * FROM datos").then(registros => {
         let arrayObjetosGenerados= [];
         //Bucle para obtener la cantidad de registros deseados
         for(let i=0; i<cantidadObjetos; i++){
@@ -27,7 +27,7 @@ const controllerDatos = {
            numAleatorio=(propiedad.nombreTipo!=='sexo' && (propiedad.nombreTipo!=='nombre'||!listaPropiedades.find(item=>item.nombreTipo==="sexo")))
               ?Math.round(Math.random() * (registros.length - cantidadObjetos) + cantidadObjetos)
               :numAleatorio;
-            if (Propiedades.propiedadesBbdd.indexOf(propiedad.nombreTipo.toLowerCase()) != -1){
+            if (propiedadesBbdd.indexOf(propiedad.nombreTipo.toLowerCase()) != -1){
               objetoGenerado[propiedad.nombrePropiedad]=registros[numAleatorio][propiedad.nombreTipo.toLowerCase()];
             }else{
               objetoGenerado[propiedad.nombrePropiedad]=Generar.generar(propiedad);
@@ -40,14 +40,6 @@ const controllerDatos = {
       });
     } else {
       return callback(Respuesta.error(401, "Token inválido"));
-    }
-  },
-
-  getPropiedades: function(token) {
-    if (jwt.verificarToken(token)) {
-      return Respuesta.success({ listaPropiedades: Propiedades.propiedades });
-    } else {
-      return Respuesta.error(401, "Token inválido");
     }
   },
 
