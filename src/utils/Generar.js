@@ -83,6 +83,11 @@ const generar = {
     fechaInicio=new Date(fechaInicio);
     fechaFin=new Date(fechaFin);
     return new Date(fechaInicio.getTime() + Math.random() * (fechaFin.getTime() - fechaInicio.getTime())).toLocaleDateString();
+  },
+
+  marcaCoche: function(){
+    let marcas=["Citroën", "Alfa Romeo", "Ferrari", "Studebaker", "Jensen", "Eagle", "Hummer", "Maserati", "Lotus", "Rolls-Royce", "Kia", "MINI", "Panoz", "Scion", "Bentley", "Acura", "Jeep", "Maybach", "Hyundai", "Subaru", "Jaguar", "Lamborghini", "Saturn", "Volkswagen", "Daewoo", "Toyota", "Lexus", "Honda", "Geo", "Aston Martin", "Chrysler", "Mercury", "Dodge", "BMW", "Mitsubishi", "Porsche", "Mazda", "Isuzu", "Plymouth", "Saab", "Pontiac", "Chevrolet", "Land Rover", "Lincoln", "Infiniti", "Ford", "Audi", "Volvo", "Suzuki", "Cadillac", "Mercedes-Benz", "Nissan"];
+    return marcas[Math.round(Math.random() * (marcas.length - 0) + 0)];
   }
 };
 
